@@ -1,4 +1,4 @@
-import { type RouterMiddleware } from "../deps/oak.ts";
+import { RouterMiddleware } from "../deps/oak.ts";
 
 import { User } from "../db/config.ts";
 
