@@ -1,8 +1,10 @@
 import { Application } from "./deps/oak.ts";
 import router from "./routes/index.ts";
-import connect from "./db/config.ts";
+import db from "./db/config.ts";
+import { User } from "./db/user.ts";
 
-connect();
+await db.link([User]);
+await db.sync();
 const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
