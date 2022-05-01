@@ -1,5 +1,4 @@
 import { PostgresConnector, Database } from "../deps/denodb.ts";
-import { User } from "./user.ts";
 
 const connection = new PostgresConnector({
   host: Deno.env.get("DB_HOST") || "127.0.0.1",
