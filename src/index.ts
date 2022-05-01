@@ -3,7 +3,7 @@ import router from "./routes/index.ts";
 import connect from "./db/config.ts";
 import { config } from "./deps/dotenv.ts";
 
-await connect();
+connect();
 const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
