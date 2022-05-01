@@ -3,8 +3,8 @@ import router from "./routes/index.ts";
 import db, { User } from "./db/config.ts";
 import { config } from "./deps/dotenv.ts";
 
-db.link([User]);
-db.sync();
+await db.link([User]);
+await db.sync();
 const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
