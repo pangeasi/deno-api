@@ -1,10 +1,9 @@
 import { Application } from "./deps/oak.ts";
 import router from "./routes/index.ts";
 import connect from "./db/config.ts";
-import { config } from "./deps/dotenv.ts";
 
 connect();
 const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
-await app.listen({ port: +config()["PORT"] || 8000 });
+await app.listen({ port: +Deno.env.get("PORT")! || 8000 });

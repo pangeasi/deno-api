@@ -1,9 +1,8 @@
 import { PostgresConnector, Database } from "../deps/denodb.ts";
-import { config } from "../deps/dotenv.ts";
 import { User } from "./user.ts";
 
 const connect = () => {
-  console.log(config());
+  console.log(">>>", Deno.env.toObject());
   /* const connection = new PostgresConnector({
     host: config()["DB_HOST"] || "127.0.0.1",
     database: config()["DATABASE"] || "postgres",
