@@ -1,11 +1,9 @@
 import { Application } from "./deps/oak.ts";
 import router from "./routes/index.ts";
-import db from "./db/config.ts";
-import { User } from "./db/user.ts";
+import connect from "./db/config.ts";
 import { config } from "./deps/dotenv.ts";
 
-await db.link([User]);
-await db.sync();
+await connect();
 const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
