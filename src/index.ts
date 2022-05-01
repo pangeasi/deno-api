@@ -1,6 +1,7 @@
 import { Application } from "./deps/oak.ts";
 import router from "./routes/index.ts";
-import db, { User } from "./db/config.ts";
+import db from "./db/config.ts";
+import { User } from "./db/user.ts";
 import { config } from "./deps/dotenv.ts";
 
 await db.link([User]);

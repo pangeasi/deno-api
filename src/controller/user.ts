@@ -1,6 +1,6 @@
 import { RouterMiddleware } from "../deps/oak.ts";
 
-import { User } from "../db/config.ts";
+import { User } from "../db/user.ts";
 
 export const getUsers: RouterMiddleware<string> = async ({ response }) => {
   const users = await User.all();

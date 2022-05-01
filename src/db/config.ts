@@ -1,9 +1,4 @@
-import {
-  PostgresConnector,
-  Database,
-  Model,
-  DataTypes,
-} from "../deps/denodb.ts";
+import { PostgresConnector, Database } from "../deps/denodb.ts";
 import { config } from "../deps/dotenv.ts";
 
 const connection = new PostgresConnector({
@@ -14,19 +9,6 @@ const connection = new PostgresConnector({
   password: config()["DB_PASSWORD"] || "",
 });
 
-const db = new Database(connection);
-
-export class User extends Model {
-  static table = "users";
-  static timestamps = true;
-
-  static fields = {
-    id: { primaryKey: true, autoIncrement: true },
-    name: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    age: DataTypes.FLOAT,
-    email: DataTypes.STRING,
-  };
-}
+const db = await new Database(connection);
 
 export default db;
