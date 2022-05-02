@@ -7,4 +7,4 @@ USER deno
 # These steps will be re-run upon each file change in your working directory:
 ADD . .
 
-CMD deno run --allow-net --allow-env --allow-read src/index.ts
+CMD ./_start.sh
