@@ -1,5 +1,13 @@
 import { Model, DataTypes } from "../deps/denodb.ts";
-
+export interface IUser {
+  id: number;
+  name: string;
+  lastName: string;
+  age: number;
+  email: string;
+  password: string;
+  active: boolean;
+}
 export class User extends Model {
   static table = "users";
   static timestamps = true;
@@ -10,5 +18,11 @@ export class User extends Model {
     lastName: DataTypes.STRING,
     age: DataTypes.FLOAT,
     email: DataTypes.STRING,
+    password: DataTypes.STRING,
+    active: DataTypes.BOOLEAN,
+  };
+
+  static defaults = {
+    active: false,
   };
 }
