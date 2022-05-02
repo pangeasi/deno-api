@@ -6,11 +6,13 @@ import {
   updateUser,
   deleteUser,
 } from "../controller/user.ts";
-
+import { home } from "../controller/index.ts";
 const router = new Router();
 
 export default router
-  .get("/", getUsers)
+  // home page
+  .get("/", home)
+  // User
   .get("/user", getUsers)
   .get("/user/:id", getUser)
   .post("/user", createUser)

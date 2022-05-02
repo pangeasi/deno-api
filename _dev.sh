@@ -1,3 +1,3 @@
 #!/bin/bash
 
-deno run --allow-net --allow-env --watch src/index.ts
+cd src && deno run --allow-net --allow-env --watch index.ts
