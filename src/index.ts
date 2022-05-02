@@ -12,6 +12,7 @@ await db.sync({
 });
 
 app.use(validationsMiddleware);
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.addEventListener("listen", ({ port }) => {
