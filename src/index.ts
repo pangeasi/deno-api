@@ -4,9 +4,11 @@ import db from "./db/config.ts";
 import { User } from "./db/user.ts";
 
 await db.link([User]);
-await db.sync();
-const app = new Application();
-app.use(router.routes());
-app.use(router.allowedMethods());
-await app.listen({ port: +Deno.env.get("PORT")! || 8000 });
-console.log("Server running on http://localhost:8000");
+await db.sync().then(async () => {
+  const app = new Application();
+  app.use(router.routes());
+  app.use(router.allowedMethods());
+  await app.listen({ port: +Deno.env.get("PORT")! || 8000 }).then(() => {
+    console.log(`Server running on http://localhost:${Deno.env.get("PORT")}`);
+  });
+});
