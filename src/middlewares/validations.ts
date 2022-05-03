@@ -1,7 +1,7 @@
 import { Middleware } from "../deps/oak.ts";
-import { validate } from "../deps/validasaur.ts";
 import { validators } from "../DTOs/index.ts";
 import router from "../routes/index.ts";
+
 export const validationsMiddleware: Middleware = async (
   { request, response },
   next
@@ -14,24 +14,16 @@ export const validationsMiddleware: Middleware = async (
     const findedRoute = routes.find((route) =>
       url.pathname.match(route.regexp)
     );
+
     if (findedRoute) {
-      const [passes, errors] = await validate(body, {
-        ...validators[findedRoute.path],
-      });
-      if (
-        Object.keys(body).length !==
-        Object.keys(validators[findedRoute.path]).length
-      ) {
+      try {
+        validators[findedRoute.path].parse(body);
+        await next();
+      } catch (error) {
         response.status = 400;
-        response.body = { message: "Invalid body", ...errors };
-        return;
-      }
-      if (!passes) {
-        response.status = 400;
-        response.body = { errors };
+        response.body = { ...error };
         return;
       }
     }
   }
-  await next();
 };
