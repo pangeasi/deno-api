@@ -18,7 +18,6 @@ export const validationsMiddleware: Middleware = async (
     if (findedRoute) {
       try {
         validators[findedRoute.path].parse(body);
-        await next();
       } catch (error) {
         response.status = 400;
         response.body = { ...error };
@@ -26,4 +25,5 @@ export const validationsMiddleware: Middleware = async (
       }
     }
   }
+  await next();
 };
