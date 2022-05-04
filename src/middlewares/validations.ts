@@ -7,10 +7,10 @@ export const validationsMiddleware: Middleware = async (
   next
 ) => {
   const { method, url } = request;
-  const routes = [...router.entries()].flatMap((el) => el[0]);
-  const body = await request.body().value;
 
   if (method === "POST" || method === "PATCH") {
+    const routes = [...router.entries()].flatMap((el) => el[0]);
+    const body = await request.body().value;
     const findedRoute = routes.find((route) =>
       url.pathname.match(route.regexp)
     );
